@@ -6,16 +6,17 @@ import { InboxOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import Big from "big.js";
 import { tw } from "twind";
+import MergeFile from "./containers/mergeFile";
 
 const { Dragger } = Upload;
 
 enum TAB {
   "file" = "file",
-  "tcc" = "tcc",
+  "mergeFile" = "mergeFile",
 }
 
 function App() {
-  const [tabKey, setTabKey] = useState<TAB>(TAB.file);
+  const [tabKey, setTabKey] = useState<TAB>(TAB.mergeFile);
   const [fileListData, setFileListData] = useState<any[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -110,11 +111,15 @@ function App() {
     <div className={tw`w-full h-1vh`}>
       <Tabs activeKey={tabKey.toString()} onChange={(v) => setTabKey(v as TAB)}>
         <Tabs.TabPane
-          tab="文件名提取"
+          tab={<span className={tw`text-[#fff]`}>文件名提取</span>}
           tabKey={TAB.file}
           key={TAB.file}
         ></Tabs.TabPane>
-        {/* <Tabs.TabPane tab="TCC" tabKey={TAB.tcc} key={TAB.tcc}></Tabs.TabPane> */}
+        <Tabs.TabPane
+          tab={<span className={tw`text-[#fff]`}>Excel合并</span>}
+          tabKey={TAB.mergeFile}
+          key={TAB.mergeFile}
+        ></Tabs.TabPane>
       </Tabs>
       {tabKey === TAB.file && (
         <>
@@ -231,6 +236,8 @@ function App() {
           />
         </>
       )}
+
+      {tabKey === TAB.mergeFile && <MergeFile />}
     </div>
   );
 }

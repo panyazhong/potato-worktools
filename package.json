@@ -17,7 +17,8 @@
     "react-dom": "^18.3.1",
     "snowflake-id": "^1.1.0",
     "twind": "^0.16.19",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/big.js": "^6.2.2",
